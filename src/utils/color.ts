@@ -8,5 +8,7 @@ export const colors = {
     LIGHT_BROWN: "#a3937c",
     WHITE: '#ffffff',
     BLACK: "#000000",
-    LIGHT_GRAY: "e8e2dc"
+    LIGHT_GRAY: "e8e2dc",
+    LIGHT: "#edebeb",
+    LIGHT_BLACK: "#555555"
 }

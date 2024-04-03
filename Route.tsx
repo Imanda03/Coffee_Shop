@@ -39,7 +39,7 @@ const Tabs = () => {
           } else if (route.name === 'Profile') {
             iconName = focused ? 'person-sharp' : 'person-outline';
           }
-          console.log(iconName);
+
           return iconName ? (
             <Ionicons name={iconName} size={24} color={colors.BROWN} />
           ) : null;
@@ -57,7 +57,7 @@ const Tabs = () => {
 };
 
 const Route = () => {
-  const token: boolean = false;
+  const token: boolean = true;
   return (
     <SafeAreaProvider>
       <NavigationContainer>
