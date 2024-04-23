@@ -13,6 +13,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import SplashScreen from './src/screens/auth/splash';
 import Login from './src/screens/auth/signin';
 import Register from './src/screens/auth/signup';
+import {useWindowDimensions} from 'react-native';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -23,8 +24,8 @@ const Tab = createBottomTabNavigator();
 //         </Stack.Navigator>
 //     )
 // }
-
 const Tabs = () => {
+  const {width, height} = useWindowDimensions();
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
@@ -44,6 +45,7 @@ const Tabs = () => {
             <Ionicons name={iconName} size={24} color={colors.BROWN} />
           ) : null;
         },
+        tabBarHideOnKeyboard: true,
         headerShown: false,
         tabBarShowLabel: false,
         tabBarStyle: {borderTopColor: colors.GRAY},

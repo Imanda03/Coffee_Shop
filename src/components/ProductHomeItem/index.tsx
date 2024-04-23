@@ -22,11 +22,13 @@ const ProductHomeItem: React.FC<HeaderProps> = ({
   return (
     <Pressable onPress={onPress} style={styles.container}>
       <Image style={styles.image} source={{uri: image}} />
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.category}>{category}</Text>
-      <View style={styles.priceContainer}>
-        <Text style={styles.price}>{price}</Text>
-        <AntDesign name="pluscircle" size={30} color={colors.EARTHY_BROWN} />
+      <View style={styles.innerContainer}>
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.category}>{category}</Text>
+        <View style={styles.priceContainer}>
+          <Text style={styles.price}>{price}</Text>
+          <AntDesign name="pluscircle" size={30} color={colors.EARTHY_BROWN} />
+        </View>
       </View>
     </Pressable>
   );

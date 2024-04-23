@@ -5,6 +5,7 @@ import {
   TextInput,
   FlatList,
   Image,
+  KeyboardAvoidingView,
 } from 'react-native';
 import React, {useState} from 'react';
 import {Avatar} from 'react-native-elements';
@@ -15,6 +16,8 @@ import {categories} from '../../../data/categories';
 import CategoryBox from '../../../components/CategoryBox';
 import {products} from '../../../data/products';
 import ProductHomeItem from '../../../components/ProductHomeItem';
+import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 interface CategoryItem {
   id: any;
@@ -83,53 +86,82 @@ const HomeScreen = ({navigation}: any) => {
     return <ProductHomeItem {...item} />;
   };
   return (
-    <SafeAreaView style={styles.mainContainer}>
-      <View style={styles.container}>
-        <View style={styles.headerContainer}>
-          <View style={styles.headerText}>
-            <Text style={styles.greetText}>Hello Anish!</Text>
-            <Text style={styles.txt}>Find your best beans</Text>
+    <KeyboardAvoidingView>
+      <SafeAreaView style={styles.mainContainer}>
+        <View style={styles.container}>
+          <View style={styles.headerContainer}>
+            <View style={styles.headerText}>
+              <Text style={styles.greetText}>Hello Anish!</Text>
+              <Text style={styles.txt}>Find your best beans</Text>
+            </View>
+            <Avatar
+              rounded
+              source={{
+                uri: 'https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png',
+              }}
+              size={60}
+            />
           </View>
-          <Avatar
-            rounded
-            source={{
-              uri: 'https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png',
-            }}
-            size={60}
+        </View>
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.input}
+            placeholder="Search..."
+            placeholderTextColor="gray"
+          />
+          <Feather
+            name="search"
+            size={24}
+            color={colors.BROWN}
+            style={styles.icon}
           />
         </View>
-      </View>
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          placeholder="Search..."
-          placeholderTextColor="gray"
+        <FlatList
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={styles.list}
+          data={categories}
+          renderItem={renderCategoryItem}
+          keyExtractor={(item, index) => String(index)}
         />
-        <Feather
-          name="search"
-          size={24}
-          color={colors.BROWN}
-          style={styles.icon}
-        />
-      </View>
-      <FlatList
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        style={styles.list}
-        data={categories}
-        renderItem={renderCategoryItem}
-        keyExtractor={(item, index) => String(index)}
-      />
 
-      <FlatList
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        data={filteredProduct}
-        renderItem={renderProductItem}
-        keyExtractor={item => String(item.id)}
-        ListFooterComponent={<View style={{height: 200}} />}
-      />
-    </SafeAreaView>
+        <FlatList
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          data={filteredProduct}
+          renderItem={renderProductItem}
+          keyExtractor={item => String(item.id)}
+          ListFooterComponent={<View style={{height: 200}} />}
+          style={styles.products}
+        />
+        <View style={styles.speacialText}>
+          <Text style={styles.special}>Special offer</Text>
+          <FontAwesome6 name="ranking-star" color={colors.RED} size={24} />
+        </View>
+        <View style={styles.slaeContainer}>
+          <View style={{flexDirection: 'row'}}>
+            <Avatar
+              source={{
+                uri: 'https://png.pngtree.com/element_our/png/20181119/coffee-product-illustration-png_242328.jpg',
+              }}
+              size={100}
+              avatarStyle={styles.image}
+            />
+            <View style={styles.saleContainer}>
+              <Text style={styles.discount}>
+                Discount Sales{' '}
+                <MaterialCommunityIcons
+                  name="check-decagram"
+                  color={colors.COPPER}
+                />
+              </Text>
+              <Text style={styles.saleText}>Get three coffee beans for</Text>
+              <Text style={styles.saleText}>the subscribe Imanda</Text>
+            </View>
+          </View>
+        </View>
+      </SafeAreaView>
+    </KeyboardAvoidingView>
   );
 };
 

@@ -9,12 +9,11 @@ export const styles = StyleSheet.create({
   },
   title: {
     color: colors.EARTHY_BROWN,
-    paddingVertical: 8,
     fontWeight: 'bold',
     fontSize: 18,
   },
   image: {
-    width: (width - 90) / 2,
+    width: (width - 40) / 2,
     height: 180,
     borderRadius: 8,
   },
@@ -26,11 +25,13 @@ export const styles = StyleSheet.create({
   },
   category: {
     color: colors.GRAY,
-    paddingBottom: 8,
+    paddingBottom: 10,
     fontWeight: 'bold',
   },
-  productContainer: {
-    backgroundColor: colors.LIGHT_GRAY,
+  innerContainer: {
+    backgroundColor: colors.LIGHT,
+    borderRadius: 10,
+    paddingHorizontal: 10,
   },
   priceContainer: {
     flexDirection: 'row',
