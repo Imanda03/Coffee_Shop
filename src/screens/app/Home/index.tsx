@@ -4,7 +4,6 @@ import {
   SafeAreaView,
   TextInput,
   FlatList,
-  Image,
   KeyboardAvoidingView,
 } from 'react-native';
 import React, {useState} from 'react';
@@ -22,7 +21,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 interface CategoryItem {
   id: any;
   title: string;
-  image: string;
+  image: any;
 }
 
 interface RenderCategoryItemProps {
@@ -31,6 +30,7 @@ interface RenderCategoryItemProps {
 }
 
 interface ProductItem {
+  id: any;
   title: string;
   image: string;
   category: any;
@@ -44,49 +44,28 @@ interface RenderProductItemProps {
 }
 
 const HomeScreen = ({navigation}: any) => {
-  const [keyword, setkeyword] = useState<string>();
-  const [selectedCategory, setSelectedCategory] = useState();
-  const [filteredProduct, setFilterProduct] = useState(products);
+  const [keyword, setKeyword] = useState<string>();
+  const [selectedCategory, setSelectedCategory] = useState<any>();
+  const [filteredProduct, setFilteredProduct] = useState(products);
 
   const renderCategoryItem = ({item, index}: RenderCategoryItemProps) => {
     return (
       <CategoryBox
-        onPress={() => setSelectedCategory(item?.id)}
-        isSelected={item?.id === selectedCategory}
+        onPress={() => setSelectedCategory(item.id)}
+        isSelected={item.id === selectedCategory}
         isFirst={index === 0}
-        title={item?.title}
-        image={item?.image}
+        title={item.title}
+        image={item.image}
       />
     );
   };
 
-  const renderItem = ({item}: any) => (
-    <View style={{padding: 16}}>
-      <Image style={{width: 100, height: 100}} source={{uri: item.imageUri}} />
-      <Text
-        style={{
-          fontSize: 18,
-          fontWeight: 'bold',
-          marginTop: 8,
-          color: 'black',
-        }}>
-        {item.title}
-      </Text>
-      <Text style={{fontSize: 16, marginTop: 4, color: 'black'}}>
-        {item.description}
-      </Text>
-    </View>
-  );
-
-  const renderProductItem = ({item, index}: RenderProductItemProps) => {
-    // const onProductPress = (product: any) => {
-    //   navigation.navigate('ProductDetails', {product});
-    // };
-    // return <ProductHomeItem onPress={() => onProductPress(item)} {...item} />;
+  const renderProductItem = ({item}: RenderProductItemProps) => {
     return <ProductHomeItem {...item} />;
   };
+
   return (
-    <KeyboardAvoidingView>
+    <KeyboardAvoidingView style={{flex: 1}}>
       <SafeAreaView style={styles.mainContainer}>
         <View style={styles.container}>
           <View style={styles.headerContainer}>
@@ -96,9 +75,7 @@ const HomeScreen = ({navigation}: any) => {
             </View>
             <Avatar
               rounded
-              source={{
-                uri: 'https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png',
-              }}
+              source={require('../../../assets/Images/avatar.jpg')}
               size={60}
             />
           </View>
@@ -108,6 +85,8 @@ const HomeScreen = ({navigation}: any) => {
             style={styles.input}
             placeholder="Search..."
             placeholderTextColor="gray"
+            onChangeText={text => setKeyword(text)}
+            value={keyword}
           />
           <Feather
             name="search"
@@ -138,23 +117,21 @@ const HomeScreen = ({navigation}: any) => {
           <Text style={styles.special}>Special offer</Text>
           <FontAwesome6 name="ranking-star" color={colors.RED} size={24} />
         </View>
-        <View style={styles.slaeContainer}>
+        <View style={styles.saleContainer}>
           <View style={{flexDirection: 'row'}}>
             <Avatar
-              source={{
-                uri: 'https://png.pngtree.com/element_our/png/20181119/coffee-product-illustration-png_242328.jpg',
-              }}
+              source={require('../../../assets/Images/coffee.jpg')}
               size={100}
               avatarStyle={styles.image}
             />
             <View style={styles.saleContainer}>
-              <Text style={styles.discount}>
-                Discount Sales{' '}
+              <View style={styles.discount}>
+                <Text style={styles.DiscountText}>Discount Sales </Text>
                 <MaterialCommunityIcons
                   name="check-decagram"
                   color={colors.COPPER}
                 />
-              </Text>
+              </View>
               <Text style={styles.saleText}>Get three coffee beans for</Text>
               <Text style={styles.saleText}>the subscribe Imanda</Text>
             </View>

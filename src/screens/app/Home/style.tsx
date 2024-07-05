@@ -98,8 +98,14 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
     borderColor: colors.LIGHT,
     backgroundColor: colors.WHITE,
-    width: 90,
+    width: 100,
     marginBottom: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  DiscountText: {
+    fontSize: 11,
+    fontWeight: '600',
   },
   saleText: {
     color: colors.EARTHY_BROWN,

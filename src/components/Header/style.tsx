@@ -13,8 +13,8 @@ export const styles = StyleSheet.create({
   },
   title: {
     alignItems: 'center',
-    color: colors.BLACK,
-    fontSize: 16,
+    color: colors.LIGHT_BLACK,
+    fontSize: 20,
     fontWeight: 'bold',
   },
   space: {

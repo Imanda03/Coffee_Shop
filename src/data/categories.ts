@@ -14,4 +14,4 @@ export const categories = [
     title: 'Recommended',
     image: 'https://cdn-icons-png.freepik.com/512/6042/6042099.png',
   },
-]
+];

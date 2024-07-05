@@ -14,16 +14,22 @@ import SplashScreen from './src/screens/auth/splash';
 import Login from './src/screens/auth/signin';
 import Register from './src/screens/auth/signup';
 import {useWindowDimensions} from 'react-native';
+import EditProfile from './src/components/EditProfile';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-// const ProfileStack = () => {
-//     return (
-//         <Stack.Navigator>
-//         </Stack.Navigator>
-//     )
-// }
+const ProfileStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="EditProfile"
+        component={EditProfile}
+        options={{headerShown: false}}
+      />
+    </Stack.Navigator>
+  );
+};
 const Tabs = () => {
   const {width, height} = useWindowDimensions();
   return (
@@ -33,7 +39,7 @@ const Tabs = () => {
           let iconName;
           if (route.name === 'Home') {
             iconName = focused ? 'home' : 'home-outline';
-          } else if (route.name === 'Favourites') {
+          } else if (route.name === 'Favorites') {
             iconName = focused ? 'bookmark' : 'bookmark-outline';
           } else if (route.name === 'Shop') {
             iconName = focused ? 'bag' : 'bag-outline';
@@ -51,9 +57,10 @@ const Tabs = () => {
         tabBarStyle: {borderTopColor: colors.GRAY},
       })}>
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Favourites" component={FavouriteScreen} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
       <Tab.Screen name="Shop" component={ShopScreen} />
+      <Tab.Screen name="Favorites" component={FavouriteScreen} />
+      <Tab.Screen name="Profile" component={ProfileScreen} />
+      {/* <Tab.Screen name="Edit Your Profile" component={EditProfile} /> */}
     </Tab.Navigator>
   );
 };
@@ -69,6 +76,12 @@ const Route = () => {
               <Stack.Screen
                 name="Tabs"
                 component={Tabs}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen name="ProfileStack" component={ProfileStack} />
+              <Stack.Screen
+                name="EditProfile"
+                component={EditProfile}
                 options={{headerShown: false}}
               />
             </>

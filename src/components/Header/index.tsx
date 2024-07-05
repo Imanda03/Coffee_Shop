@@ -7,7 +7,7 @@ import {colors} from '../../utils/color';
 import Input from '../Input';
 
 interface HeaderProps {
-  title?: string;
+  title: string;
   onBackPress?: () => void;
   onSearch?: (value: any) => void;
   onLogout?: (value: any) => void;
